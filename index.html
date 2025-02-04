@@ -71,13 +71,20 @@
         let yesButtonSize = 1;
 
         function acceptLove() {
-            // Reset the Yes button size to its original size when the user clicks 'Yes'
             yesButtonSize = 1;
             document.querySelector('.yes').style.transform = `scale(${yesButtonSize})`;
 
-            // Show the "Yes" gif and hide the "No" gif
-            document.getElementById('yesGif').style.display = 'block';
+            // Reload GIF to restart animation
+            let yesGif = document.getElementById('yesGif');
+            yesGif.style.display = 'block';
+            yesGif.src = "yes.gif?" + new Date().getTime(); // Forces reload
+
             document.getElementById('noGif').style.display = 'none';
+            
+            // Reset the No button text and index
+            noButtonIndex = 0;
+            document.querySelector('.no').textContent = noButtonTexts[0];
+            
             alert("Yay! You said Yes! ❤️");
         }
 
