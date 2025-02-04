@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Pookie</title>
+    <style>
+        body {
+            background-color: #ffc0cb;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: red;
+        }
+        .buttons {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+        }
+        .gif-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .gif-container img {
+            width: 200px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine?</h1>
+    <div class="buttons">
+        <button class="yes" onclick="acceptLove()">Yes</button>
+        <button class="no" onclick="changeNoText()">No</button>
+    </div>
+    <div class="gif-container">
+        <img id="yesGif" src="yes.gif" alt="Yay!">
+        <img id="noGif" src="no.gif" alt="No No No">
+    </div>
+    <script>
+        let noButtonTexts = [
+            "No", 
+            "Are you sure?", 
+            "Really sure?", 
+            "Are you positive?", 
+            "Please....", 
+            "Just think about it", 
+            "If you say no I will be really sad....", 
+            "I will be very sad.....", 
+            "I will be very very very very sad...."
+        ];
+        let noButtonIndex = 0;
+        let yesButtonSize = 1;
+
+        function acceptLove() {
+            // Reset the Yes button size to its original size when the user clicks 'Yes'
+            yesButtonSize = 1;
+            document.querySelector('.yes').style.transform = `scale(${yesButtonSize})`;
+
+            // Show the "Yes" gif and hide the "No" gif
+            document.getElementById('yesGif').style.display = 'block';
+            document.getElementById('noGif').style.display = 'none';
+            alert("Yay! You said Yes! ❤️");
+        }
+
+        function changeNoText() {
+            // Show the "No" gif every time the No button is clicked
+            document.getElementById('noGif').style.display = 'block';
+            
+            // Hide the "Yes" gif when the No button is clicked
+            document.getElementById('yesGif').style.display = 'none';
+            
+            // Change the text on the red button
+            if (noButtonIndex < noButtonTexts.length) {
+                document.querySelector('.no').textContent = noButtonTexts[noButtonIndex];
+                noButtonIndex++;
+            } else {
+                document.querySelector('.no').textContent = "I said No!";
+            }
+
+            // Increase the size of the Yes button each time the No button is clicked
+            yesButtonSize += 0.1;
+            document.querySelector('.yes').style.transform = `scale(${yesButtonSize})`;
+        }
+    </script>
+</body>
+</html>
